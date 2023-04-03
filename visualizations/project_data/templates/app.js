@@ -274,6 +274,60 @@
 // Load the GeoJSON file and Private debt, loans and debt securities data
 // Load the GeoJSON file
 // Initialize the map
+// document.addEventListener('touchstart', function(e) {
+//   // your event handler code here
+// }, {passive: true});
+
+
+//----------------------------------------
+// var map = L.map('map').setView([0, 0], 2);
+
+// // Add the base tile layer
+// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//   maxZoom: 19,
+//   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+// }).addTo(map);
+
+// // Load the debt data
+// d3.json("sample.json").then(function(data) {
+//   var debtData = {};
+//   data.forEach(function(d) {
+//     if (d['2021'] !== "no data") {
+//       debtData[d['Countries']] = parseFloat(d['2021']);
+//     }
+    
+//   });
+
+//   // Load the GeoJSON data and add it to the map
+//   d3.json("countries.geojson").then(function(data) {
+//     var countries = L.geoJson(data, {
+//       style: function(feature) {
+//         var country = feature.properties.ADMIN;
+//         var debtRatio = debtData[country];
+        
+//         if (debtRatio) {
+//           if (debtRatio < 30) {
+//             return { color: 'green' };
+//           } else if (debtRatio < 60) {
+//             return { color: 'orange' };
+//           } else {
+//             return { color: 'red' };
+//           }
+//         } else {
+//           return { color: 'gray' };
+//         }
+//       }
+//     });
+//     console.log(typeof countries);
+//     console.log(countries);
+//     console.log(debtData);
+//     countries.addTo(map);
+//   });
+// });
+
+//----------------------------------------------
+
+// Define the map and set the initial view
 var map = L.map('map').setView([0, 0], 2);
 
 // Add the base tile layer
@@ -282,28 +336,36 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// Load the debt data
+// Load the debt data from a JSON file using D3
 d3.json("sample.json").then(function(data) {
+  // Initialize an empty object to store the debt data
   var debtData = {};
+  
+  // Loop through the data and store the debt-to-GDP ratios by country
   data.forEach(function(d) {
     if (d['2021'] !== "no data") {
       debtData[d['Countries']] = parseFloat(d['2021']);
     }
-    
   });
 
   // Load the GeoJSON data and add it to the map
   d3.json("countries.geojson").then(function(data) {
+    // Create a Leaflet GeoJSON layer with styles based on the debt data
     var countries = L.geoJson(data, {
       style: function(feature) {
+        // Get the country name and debt-to-GDP ratio
         var country = feature.properties.ADMIN;
         var debtRatio = debtData[country];
         
+        // Set the color based on the debt-to-GDP ratio
         if (debtRatio) {
           if (debtRatio < 30) {
             return { color: 'green' };
-          } else if (debtRatio < 60) {
+          } else if (debtRatio < 100) {
             return { color: 'orange' };
+          } 
+          else if (debtRatio < 150) {
+            return { color: 'yello' };
           } else {
             return { color: 'red' };
           }
@@ -312,9 +374,8 @@ d3.json("sample.json").then(function(data) {
         }
       }
     });
-    console.log(typeof countries);
-    console.log(countries);
-    console.log(debtData);
+    
+    // Add the countries layer to the map
     countries.addTo(map);
   });
 });
