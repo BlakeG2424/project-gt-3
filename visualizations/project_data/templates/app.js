@@ -326,62 +326,62 @@
 // });
 
 //----------------------------------------------
+//************************************ */
+// // Define the map and set the initial view
+// var map = L.map('map').setView([0, 0], 2);
 
-// Define the map and set the initial view
-var map = L.map('map').setView([0, 0], 2);
+// // Add the base tile layer
+// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//   maxZoom: 19,
+//   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+// }).addTo(map);
 
-// Add the base tile layer
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-// Load the debt data from a JSON file using D3
-d3.json("sample.json").then(function(data) {
-  // Initialize an empty object to store the debt data
-  var debtData = {};
+// // Load the debt data from a JSON file using D3
+// d3.json("sample.json").then(function(data) {
+//   // Initialize an empty object to store the debt data
+//   var debtData = {};
   
-  // Loop through the data and store the debt-to-GDP ratios by country
-  data.forEach(function(d) {
-    if (d['2021'] !== "no data") {
-      debtData[d['Countries']] = parseFloat(d['2021']);
-    }
-  });
+//   // Loop through the data and store the debt-to-GDP ratios by country
+//   data.forEach(function(d) {
+//     if (d['2021'] !== "no data") {
+//       debtData[d['Countries']] = parseFloat(d['2021']);
+//     }
+//   });
 
-  // Load the GeoJSON data and add it to the map
-  d3.json("countries.geojson").then(function(data) {
-    // Create a Leaflet GeoJSON layer with styles based on the debt data
-    var countries = L.geoJson(data, {
-      style: function(feature) {
-        // Get the country name and debt-to-GDP ratio
-        var country = feature.properties.ADMIN;
-        var debtRatio = debtData[country];
+//   // Load the GeoJSON data and add it to the map
+//   d3.json("countries.geojson").then(function(data) {
+//     // Create a Leaflet GeoJSON layer with styles based on the debt data
+//     var countries = L.geoJson(data, {
+//       style: function(feature) {
+//         // Get the country name and debt-to-GDP ratio
+//         var country = feature.properties.ADMIN;
+//         var debtRatio = debtData[country];
         
-        // Set the color based on the debt-to-GDP ratio
-        if (debtRatio) {
-          if (debtRatio < 25) {
-            return { color: '#f5f5dc' };
-          } else if (debtRatio < 50) {
-            return { color: '#e0e094' };
-          } 
-          else if (debtRatio < 75) {
-            return { color: '#50bcdf' };
-          } else if (debtRatio < 100) {
-            return { color: '#00a000' };
-          } else {
-            return { color: '#006600' };
-          }
-        } else {
-          return { color: 'gray' };
-        }
-      }
-    });
-    
-    // Add the countries layer to the map
-    countries.addTo(map);
-  });
-});
-
+//         // Set the color based on the debt-to-GDP ratio
+//         if (debtRatio) {
+//           if (debtRatio < 25) {
+//             return { color: '#f5f5dc' };
+//           } else if (debtRatio < 50) {
+//             return { color: '#e0e094' };
+//           } 
+//           else if (debtRatio < 75) {
+//             return { color: '#50bcdf' };
+//           } else if (debtRatio < 100) {
+//             return { color: '#00a000' };
+//           } else {
+//             return { color: '#006600' };
+//           }
+//         } else {
+//           return { color: 'gray' };
+//         }
+//       }
+//     });
+//     console.log(debtData)
+//     // Add the countries layer to the map
+//     countries.addTo(map);
+//   });
+// });
+//***************************************** */
 
 // // 1. Load the data
 // function init() {
@@ -503,3 +503,241 @@ d3.json("sample.json").then(function(data) {
 
 // // Call the initial function
 // init();
+// fetch('sample.json')
+//   .then(response => response.json())
+//   .then(data => {
+//     const values = data.values;
+//     const countries = Object.keys(values.HH_LS);
+//     console.log(countries);
+//     // Loop through the data for each country
+//     countries.forEach(country => {
+//       // Get the data for 2021 for the current country
+//       const data2021 = values.HH_LS[country]['2021'];
+//       console.data2021;
+//       // Create gauge chart
+//       let riskfreq = data2021;
+//       let guageTrace = [
+//           {
+//               domain: { x: [0, 1], y: [0, 1] },
+//               value: parseFloat(riskfreq),
+//               title: {
+//                   text: "<b>Risk Meter</b><br>Country",
+//                   font: { color: "black", size: 24 }
+//               },
+//               type: "indicator",
+//               mode: "gauge+number",
+//               gauge: {
+//                   axis: { range: [null, 9] },
+//                   steps: [
+//                       { range: [0, 2], color: "#FEF9E7" },
+//                       { range: [2, 4], color: "#FCF3CF" },
+//                       { range: [4, 6], color: "#F9E79F" },
+//                       { range: [6, 8], color: "#F7DC6F" },
+//                       { range: [8, 9], color: "#F4D03F" }
+//                   ]
+//               }
+//           }
+//       ];
+//       let guageLayout = {
+//           width: 700,
+//           height: 600,
+//           margin: { t: 0, b: 0 }
+//       };
+//       Plotly.newPlot("gauge", guageTrace, guageLayout);
+//   });
+// })
+// .catch(error => console.error(error));
+
+
+
+// // Load the debt data from a JSON file using D3
+// d3.json("sample.json").then(function(data) {
+//   // Initialize an empty object to store the debt data
+//   var debtData = {};
+  
+//   // Loop through the data and store the debt-to-GDP ratios by country
+//   data.forEach(function(d) {
+//     if (d['2021'] !== "no data") {
+//       debtData[d['Countries']] = parseFloat(d['2021']);
+//     }
+//   });
+
+//   // Load the GeoJSON data and add it to the map
+//   d3.json("countries.geojson").then(function(data) {
+//     // Create a Leaflet GeoJSON layer with styles based on the debt data
+//     var countries = L.geoJson(data, {
+//       style: function(feature) {
+//         // Get the country name and debt-to-GDP ratio
+//         var country = feature.properties.ADMIN;
+//         var debtRatio = debtData[country];
+        
+//         // Set the color based on the debt-to-GDP ratio
+//         if (debtRatio) {
+//           if (debtRatio < 25) {
+//             return { color: '#f5f5dc' };
+//           } else if (debtRatio < 50) {
+//             return { color: '#e0e094' };
+//           } 
+//           else if (debtRatio < 75) {
+//             return { color: '#50bcdf' };
+//           } else if (debtRatio < 100) {
+//             return { color: '#00a000' };
+//           } else {
+//             return { color: '#006600' };
+//           }
+//         } else {
+//           return { color: 'gray' };
+//         }
+//       }
+//     });
+//     console.log(debtData)
+//     // Add the countries layer to the map
+//     countries.addTo(map);
+//   });
+// });
+
+
+
+//     // Create gauge chart
+//   let wfreq = metaData.wfreq;
+//   let guageTrace = [
+//       {
+//           domain: { x: [0, 1], y: [0, 1] },
+//           value: parseFloat(wfreq),
+//           title: {
+//             text: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week",
+//             font: {color: "black", size: 24}
+//             },
+//           type: "indicator",
+//           mode: "gauge+number",
+//           gauge: { axis: { range: [null, 9] },
+//                    steps: [
+//                       { range: [0, 2], color: "#FEF9E7" },
+//                       { range: [2, 4], color: "#FCF3CF" },
+//                       { range: [4, 6], color: "#F9E79F" },
+//                       { range: [6, 8], color: "#F7DC6F" },
+//                       { range: [8, 9], color: "#F4D03F" }
+//                     ]
+
+//                   }
+//       }
+//     ];
+//   let guageLayout = { 
+//             width: 700, 
+//             height: 600, 
+//             margin: { t: 0, b: 0 } 
+//     };
+//   Plotly.newPlot("gauge", guageTrace, guageLayout);
+// }
+
+// 이것은 결과값을 제대로 불러옴.
+
+fetch("sample.json")
+  .then(response => response.json())
+  .then(data => {
+    const debtRatio2021 = [];
+
+    // 모든 객체들을 순회하면서 "2021" 값을 가져옵니다.
+    data.forEach(obj => {
+      const countryName = obj.Countries;
+      const debtRatio = obj["2021"];
+      debtRatio2021.push({ countryName, debtRatio });
+    });
+
+    console.log(debtRatio2021);
+  })
+  .catch(error => console.log(error));
+
+//게이지 차트까지 시도하기
+
+
+// fetch("sample.json")
+//   .then(response => response.json())
+//   .then(data => {
+//     const chartData = data.map(d => {
+//       return {
+//         country: d.Countries,
+//         value: Number(d["2021"])
+//       }
+//     });
+//     const chart = new G2Plot.Gauge(document.getElementById('chart-container'), {
+//       data: chartData,
+//       angleField: 'value',
+//       color: ['#39B8FF', '#52619B', '#43E089', '#C0EDF3'],
+//       range: [0, 2.5, 5, 10, 20],
+//       indicator: {
+//         pointer: { style: { stroke: '#D0D0D0' } },
+//         pin: { style: { stroke: '#D0D0D0' } }
+//       },
+//       statistic: {
+//         title: false,
+//         content: {
+//           style: {
+//             fontSize: '36px',
+//             lineHeight: '40px',
+//             fontWeight: 'bold'
+//           }
+//         }
+//       }
+//     });
+//     chart.render();
+//   })
+//   .catch(error => console.error(error));
+
+//알바니아 샘플
+fetch('sample.json')
+  .then(response => response.json())
+  .then(data => {
+    const albaniaData = data.find(d => d.Countries === 'Albania'); // 'Albania' 데이터 추출
+    const albaniaDebtRatio = albaniaData['2021']; // '2021'의 데이터 추출
+    var data = [
+      {
+        domain: { x: [0, 1], y: [0, 1] },
+        value: parseFloat(albaniaDebtRatio),
+        title: { text: "Speed" },
+        type: "indicator",
+        mode: "gauge+number"
+      }
+    ];
+    
+    var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+    Plotly.newPlot('chart-container', data, layout);
+  });
+
+  fetch("sample.json")
+  .then(response => response.json())
+  .then(data => {
+    const allData = [];
+
+    data.forEach(obj => {
+      const countryName = obj.Countries;
+      const debtRatioData = [];
+
+      // 2005년부터 2021년까지의 데이터를 가져와서 리스트로 저장합니다.
+      for (let year = 2005; year <= 2021; year++) {
+        debtRatioData.push(parseFloat(obj[String(year)]));
+      }
+
+      allData.push({ countryName, debtRatioData });
+    });
+
+    console.log(allData);
+  })
+  .catch(error => console.log(error));
+
+  fetch("sample.json")
+  .then(response => response.json())
+  .then(data => {
+    const albaniaData = data.find(d => d.Countries === 'Albania'); // 'Albania' 데이터 추출
+    const years = Object.keys(albaniaData).filter(key => key !== 'Countries'); // 모든 연도 추출
+    const debtRatios = years.map(year => albaniaData[year]); // 각 연도의 빛 비율 추출
+
+    const chartData = [{
+      x: years,
+      y: debtRatios,
+      type: 'line'
+    }];
+
+    Plotly.newPlot('line-container', chartData);
+  })
+  .catch(error => console.log(error));
