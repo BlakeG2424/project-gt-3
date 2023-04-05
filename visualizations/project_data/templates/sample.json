@@ -165,7 +165,7 @@
     "2020": "360.61076",
     "2021": "277.1921971",
     "Column1": 8,
-    "Countries": "Bahamas, The"
+    "Countries": "The Bahamas"
     },
     {
     "2005": "56.18562098",
@@ -564,7 +564,7 @@
     "2020": "200.7658711",
     "2021": "193.5898035",
     "Column1": 27,
-    "Countries": "China, People's Republic of"
+    "Countries": "China"
     },
     {
     "2005": "39.64913599",
@@ -627,7 +627,7 @@
     "2020": "7.284080687",
     "2021": "6.915338381",
     "Column1": 30,
-    "Countries": "Congo, Dem. Rep. of the"
+    "Countries": "Democratic Republic of the Congo"
     },
     {
     "2005": "2.199517493",
@@ -648,7 +648,7 @@
     "2020": "no data",
     "2021": "no data",
     "Column1": 31,
-    "Countries": "Congo, Republic of "
+    "Countries": "Republic of Congo"
     },
     {
     "2005": "45.88103463",
@@ -753,7 +753,7 @@
     "2020": "21.07127014",
     "2021": "21.75227263",
     "Column1": 36,
-    "Countries": "Côte d'Ivoire"
+    "Countries": "Ivory Coast"
     },
     {
     "2005": "208.0505277",
@@ -1026,7 +1026,7 @@
     "2020": "7.584932474",
     "2021": "8.405745252",
     "Column1": 49,
-    "Countries": "Gambia, The"
+    "Countries": "Gambia"
     },
     {
     "2005": "16.97754731",
@@ -1278,7 +1278,7 @@
     "2020": "383.6060213",
     "2021": "368.1213807",
     "Column1": 61,
-    "Countries": "Hong Kong SAR"
+    "Countries": "Hong Kong S.A.R."
     },
     {
     "2005": "87.9125523",
@@ -1593,7 +1593,7 @@
     "2020": "212.8031198",
     "2021": "219.4857114",
     "Column1": 76,
-    "Countries": "Korea, Republic of"
+    "Countries": "South Korea"
     },
     {
     "2005": "53.75390647",
@@ -1635,7 +1635,7 @@
     "2020": "27.81456651",
     "2021": "25.67253852",
     "Column1": 78,
-    "Countries": "Kyrgyz Republic"
+    "Countries": "Kyrgyzstan"
     },
     {
     "2005": "6.210071101",
@@ -1656,7 +1656,7 @@
     "2020": "43.08997082",
     "2021": "44.20728504",
     "Column1": 79,
-    "Countries": "Lao P.D.R."
+    "Countries": "Laos"
     },
     {
     "2005": "85.85685766",
@@ -2244,7 +2244,7 @@
     "2020": "99.48094855",
     "2021": "98.79717071",
     "Column1": 107,
-    "Countries": "North Macedonia "
+    "Countries": "Macedonia"
     },
     {
     "2005": "181.5615881",
@@ -2496,7 +2496,7 @@
     "2020": "113.643614",
     "2021": "101.6024043",
     "Column1": 119,
-    "Countries": "Russian Federation"
+    "Countries": "Russia"
     },
     {
     "2005": "9.798144254",
@@ -2706,7 +2706,7 @@
     "2020": "101.7292703",
     "2021": "102.1463593",
     "Column1": 129,
-    "Countries": "Slovak Republic"
+    "Countries": "Slovakia"
     },
     {
     "2005": "83.99510882",
@@ -2916,7 +2916,7 @@
     "2020": "17.22816649",
     "2021": "no data",
     "Column1": 139,
-    "Countries": "São Tomé and Príncipe"
+    "Countries": "Sao Tome and Principe"
     },
     {
     "2005": "6.370871572",
@@ -3084,7 +3084,7 @@
     "2020": "88.9974651",
     "2021": "88.98853754",
     "Column1": 147,
-    "Countries": "Türkiye, Republic of"
+    "Countries": "Turkey"
     },
     {
     "2005": "6.128868207",
@@ -3189,7 +3189,7 @@
     "2020": "165.1721208",
     "2021": "159.1236331",
     "Column1": 152,
-    "Countries": "United States"
+    "Countries": "United States of America"
     },
     {
     "2005": "23.95603903",

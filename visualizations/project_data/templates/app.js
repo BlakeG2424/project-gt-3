@@ -690,15 +690,22 @@ fetch('sample.json')
   .then(data => {
     const albaniaData = data.find(d => d.Countries === 'Albania'); // 'Albania' 데이터 추출
     const albaniaDebtRatio = albaniaData['2021']; // '2021'의 데이터 추출
-    var data = [
-      {
-        domain: { x: [0, 1], y: [0, 1] },
-        value: parseFloat(albaniaDebtRatio),
-        title: { text: "Speed" },
-        type: "indicator",
-        mode: "gauge+number"
+    var data = [  {    domain: { x: [0, 1], y: [0, 1] },
+    value: parseFloat(albaniaDebtRatio),
+    title: {
+      text: "<b><span style='font-size:24px'>Household debt, loans and debt securities per GDP</span></b>",
+      font: {
+        size: 32,
+        color: '#000',
+        family: 'Arial, sans-serif',
+        weight: 'bold'
       }
-    ];
+    },
+    type: "indicator",
+    mode: "gauge+number"
+  }
+];
+
     
     var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
     Plotly.newPlot('chart-container', data, layout);
@@ -735,9 +742,153 @@ fetch('sample.json')
     const chartData = [{
       x: years,
       y: debtRatios,
-      type: 'line'
+      type: 'line',
+      name: `${albaniaData.Countries} Periodic Household Debt Ratio`
     }];
 
-    Plotly.newPlot('line-container', chartData);
+    const layout = {
+      title: {
+        text: `${albaniaData.Countries} Periodic Household Debt Ratio`,
+        font: {
+          size: 36,
+          family: 'Arial',
+          weight: 'bold'
+        }
+      },
+      xaxis: {
+        title: {
+          text: 'Year',
+          font: {
+            size: 18
+          }
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'Debt Ratio',
+          font: {
+            size: 18
+          }
+        }
+      }
+    };
+
+    Plotly.newPlot('line-container', chartData, layout);
   })
   .catch(error => console.log(error));
+
+
+
+// Define the map and set the initial view
+var map = L.map('map').setView([0, 0], 2);
+
+// Add the base tile layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// // Load the debt data from a JSON file using D3
+// d3.json("sample.json").then(function(data) {
+//   // Initialize an empty object to store the debt data
+//   var debtData = {};
+  
+//   // Loop through the data and store the debt-to-GDP ratios by country
+//   data.forEach(function(d) {
+//     if (d['2021'] !== "no data") {
+//       debtData[d['Countries']] = parseFloat(d['2021']);
+//     }
+//   });
+
+//   // Load the GeoJSON data and add it to the map
+//   d3.json("countries.geojson").then(function(data) {
+//     // Create a Leaflet GeoJSON layer with styles based on the debt data
+//     var countries = L.geoJson(data, {
+//       style: function(feature) {
+//         // Get the country name and debt-to-GDP ratio
+//         var country = feature.properties.ADMIN;
+//         var debtRatio = debtData[country];
+        
+//         // Set the color based on the debt-to-GDP ratio
+//         if (debtRatio) {
+//           if (debtRatio < 25) {
+//             return { color: '#ff7f00' };
+//           } else if (debtRatio < 50) {
+//             return { color: '#81c147' };
+//           } 
+//           else if (debtRatio < 75) {
+//             return { color: '#bdd641' };
+//           } else if (debtRatio < 100) {
+//             return { color: '#41d68c' };
+//           } else {
+//             return { color: '#168248' };
+//           }
+//         } else {
+//           return { color: 'gray' };
+//         }
+//       }
+//     });
+//     console.log(debtData)
+//     // Add the countries layer to the map
+//     countries.addTo(map);
+//   });
+// });  
+d3.json("sample.json").then(function(data) {
+  // Initialize an empty object to store the debt data
+  var debtData = {};
+
+  // Loop through the data and store the debt-to-GDP ratios by country
+  data.forEach(function(d) {
+    if (d['2021'] !== "no data") {
+      debtData[d['Countries']] = parseFloat(d['2021']);
+    }
+  });
+
+  // Load the GeoJSON data and add it to the map
+  d3.json("countries.geojson").then(function(data) {
+    // Create a Leaflet GeoJSON layer with styles based on the debt data
+    var countries = L.geoJson(data, {
+      style: function(feature) {
+        // Get the country name and debt-to-GDP ratio
+        var country = feature.properties.ADMIN;
+        var debtRatio = debtData[country];
+
+        // Set the color based on the debt-to-GDP ratio
+        if (debtRatio) {
+          if (debtRatio < 25) {
+            return { color: '#ff7f00',fillColor: '#ff7f00' };
+          } else if (debtRatio < 50) {
+            return { color: '#c7e9c0', fillColor: '#c7e9c0' };
+          } else if (debtRatio < 75) {
+            return { color: '#a1d99b',fillColor: '#a1d99b' };
+          } else if (debtRatio < 100) {
+            return { color: '#74c476',fillColor: '#74c476' };
+          } else if (debtRatio < 200) {
+            return { color: '#007500',fillColor: '#007500' };  
+          } else {
+            return { color: '#0067A3',fillColor: '#0067A3' };
+          }
+        } else {
+          return { color: 'gray' };
+        }
+      },
+      onEachFeature: function(feature, layer) {
+        // Get the country name and debt-to-GDP ratio
+        var country = feature.properties.ADMIN;
+        var debtRatio = debtData[country];
+
+        // Create a tooltip with the country name and debt-to-GDP ratio
+        var tooltipText = country + ': ' + (debtRatio ? debtRatio.toFixed(2) + '%' : 'No data');
+
+        // Set the tooltip style
+        layer.bindTooltip(tooltipText, {
+          className: 'custom-tooltip'
+        });
+      }
+    });
+
+    // Add the countries layer to the map
+    countries.addTo(map);
+  });
+});
+
