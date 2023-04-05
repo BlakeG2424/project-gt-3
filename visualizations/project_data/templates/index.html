@@ -26,17 +26,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <style>
-      #map { height: 500px; width:1000px;}
+      #map { height: 600px; width: 100%;}
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
           integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
           crossorigin=""></script>
   </head>
   <body>
-    <h1>Gauge Chart Example</h1>
-    <div id="chart-container"></div>
-    <div id="line-container"></div>
-    <div id="map"></div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 jumbotron text-center" style="background-image: url(https://thumbs.dreamstime.com/b/debt-to-gdp-ratio-concept-large-stone-text-wooden-cubes-letters-bag-seesaw-172410962.jpg);">
+          <h1 style="color: white;">Household debt, loans and debt securities per GDP</h1>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="dept">
+            <h5 style="text-align: center; font-size: 35px; font-weight: bold;">Household debt, loans and debt securities per GDP Map</h5>
+          </div>
+          <div id="map"></div>  
+        </div>    
+      </div>
+      
+      
+      <div class="row">    
+
+        <div class="col-md-8">
+          <div id="guage"></div>
+        </div>
+        <div class="col-md-4">
+          <div class="well">
+            <Country style="text-align: center; font-size: 24px; font-weight: bold;">Country</h6>
+            <br> </br>
+            <select id="country-select" onchange="optionChanged(this.value)"></select>
+          </div>
+        </div> 
+      </div>  
+      <!-- <div class="row">    -->
+      <div id="chart-container"></div>
+      <div id="line-container"></div>
+    </div>
     <script src="app.js"></script>
   </body>
   <script src="https://d3js.org/d3.v5.min.js"></script>

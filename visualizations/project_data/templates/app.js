@@ -892,3 +892,37 @@ d3.json("sample.json").then(function(data) {
   });
 });
 
+let dropdownMenu = d3.select("#country-select");
+
+// Define a function to create plots
+function createPlots(country, data) {
+  // ...
+}
+
+// Load the data from the JSON file
+d3.json("sample.json").then(data => {
+  console.log(data);
+  // Get the country names from the data
+  let countryNames = data.map(d => d.Countries);
+  console.log(countryNames);
+
+  // Add options to the select element for each country
+  d3.select("#country-select")
+    .selectAll("option")
+    .data(countryNames)
+    .enter()
+    .append("option")
+    .text(d => d)
+    .attr("value", d => d);
+
+  // Call createPlots with the default country and the data
+  createPlots(countryNames[0], data);
+});
+
+// Define a function to create plots
+function createPlots(country, data) {
+  // Filter the data for the selected country
+  let filteredData = data.filter(d => d.Countries === country);
+  console.log(filteredData);
+  // ...
+}
