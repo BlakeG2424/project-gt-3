@@ -24,7 +24,8 @@ def getCountryGDP(country='United States'):
     [df ['country'] == country],
     x='year',
     y='gdp'
-    )
+    ).update_layout(
+    xaxis_title="Year", yaxis_title="Percent of GDP")
 
     graphJson = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
@@ -32,7 +33,7 @@ def getCountryGDP(country='United States'):
 
 def getPieChartData(year="2021"):
     #connect and read from sqlite db
-    conn = sqlite3.connect('sqlite2.db')
+    conn = sqlite3.connect('sqlite.db')
     query = "SELECT * FROM imf_data WHERE year=" + year
     df = pd.read_sql_query(query , conn)
     data={}
