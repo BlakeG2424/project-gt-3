@@ -19,8 +19,7 @@ def home():
 @app.route("/api/route")
 def route():
     # Path to SQLite file
-    database_path = "/Users/unghwanahn/git/project-gt-3/csv_data/imf.sqlite"
-   
+    database_path = "csv_data/imf.sqlite"
 
     # Creating the SQL database
     engine = create_engine(f"sqlite:///{database_path}")
