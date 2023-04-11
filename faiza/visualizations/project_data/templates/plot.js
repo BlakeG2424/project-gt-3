@@ -15,7 +15,7 @@ let date = []
 let canada_ratio = []
 let us_ratio = []
 
-let filePath = './../../ratio_output.json';
+let filePath = 'ratio_output.json';
   try {
     fetch(filePath)
       .then(response => response.json())
