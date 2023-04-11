@@ -16,13 +16,45 @@
             margin-right: auto;
             width: 50%;
         }
+        .centerr {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 30%;
+            margin-top: 100px;
+        }
+        #plot {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .map {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .map #plot {
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
     </style>
 </head>
 <body>
-    <h1>Canada GDP Ratio vs United States GDP Ratio</h1>
-    <div id="plot"></div>
-    <script src="/visualizations/project_data/plot.js"></script>
-    <img src="canadaus5.jpg" height="400" width="1060" class="center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="canadaus5.jpg" height="200" width="400" class="centerr">
+                <h1>Canada GDP Ratio vs United States GDP Ratio</h1>
+                <div class="map">
+                    <div id="plot"></div>
+                </div>
+                    <script src="plot.js"></script>
+                
+            </div>    
+        </div>
+    </div>    
 </body>
 </html>
 
