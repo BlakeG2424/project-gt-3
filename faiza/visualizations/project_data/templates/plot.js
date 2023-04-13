@@ -57,6 +57,8 @@ let filePath = 'ratio_output.json';
 
         // Apply a title to the layout
         let layout = {
+          width: 1150,
+          height: 700,
           barmode: "group",
           // Include margins in the layout so the x-tick labels display correctly
           margin: {
